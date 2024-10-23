@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->boolean('complete');
+            $table->enum('status', ['To Do', 'In Progress', 'Done']);
+            $table->dateTime('completed_at')->nullable();
             $table->timestamps();
         });
     }

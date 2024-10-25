@@ -11,7 +11,14 @@ class ActivityGroupController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(
+            ActivityGroup::select(
+                'id',
+                'name',
+                'description',
+                'status'
+            )->get()
+        );
     }
 
     /**

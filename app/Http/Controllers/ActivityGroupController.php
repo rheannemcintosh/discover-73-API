@@ -67,6 +67,20 @@ class ActivityGroupController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $activityGroup = ActivityGroup::find($id);
+
+        if (!$activityGroup) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Activity group not found'
+            ], 404);
+        }
+
+        $activityGroup->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Activity group deleted successfully'
+        ]);
     }
 }

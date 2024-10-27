@@ -11,4 +11,9 @@ class ActivityGroup extends Model
         'description',
         'status'
     ];
+
+    public function activities()
+    {
+        return $this->hasMany(Activity::class);
+    }
 }

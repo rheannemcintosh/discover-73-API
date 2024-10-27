@@ -15,8 +15,16 @@ class ActivityGroupController extends Controller
     public function index()
     {
         return response()->json(
-            ActivityGroup::select(
-                'id',
+            ActivityGroup:: with(['activities' => function ($query) {
+                $query->select(
+                    'id',
+                    'name',
+                    'activity_group_id',
+                    'description',
+                    'status'
+                );
+            }])->select(
+        'id',
                 'name',
                 'description',
                 'status'

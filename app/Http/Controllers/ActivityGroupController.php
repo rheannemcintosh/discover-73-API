@@ -59,7 +59,19 @@ class ActivityGroupController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $activityGroup = ActivityGroup::with('activities')->find($id);
+
+        if (!$activityGroup) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Activity group not found'
+            ], 404);
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => $activityGroup
+        ]);
     }
 
     /**
